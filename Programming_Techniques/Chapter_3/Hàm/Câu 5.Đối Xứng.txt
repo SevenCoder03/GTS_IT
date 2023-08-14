@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+int doixung(int n)
+{
+    int m,M=0;
+    int N=n;
+    while(n>0)
+    {
+        m=n%10;
+        M=M*10+m;
+        n/=10;
+    }
+    if(N==M)
+    {
+        cout<<n<<" la so doi xung";
+    }
+    else
+    {
+        cout<<n<<" khong la so doi xung";
+    }
+    return 0;
+}
+
+int main()
+{
+    int n;
+    cout<<"Enter number: ";
+    cin>>n;
+    doixung(n);
+    return 0;
+}

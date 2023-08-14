@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+int A[1000][1000];
+
+void inputArray(int m, int n)
+{
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cout<<"Nhap phan tu thu ["<<i<<"]["<<j<<"]: ";
+            cin>>A[i][j];
+        }
+    }
+    cout<<endl;
+}
+void sumRowMax(int m, int n)
+{
+    int sumMaxtest=0, sumMax=0, Count;
+    for(int j=0; j<n; j++)
+    {
+        sumMax+=A[1][j];
+    }
+    for(int i=1; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+           sumMaxtest+=A[i][j];
+        }
+        if(sumMax < sumMaxtest)
+        {
+            sumMax = sumMaxtest;
+            Count = i;
+        }
+        sumMaxtest=0;
+    }
+    cout<<"Dong co tong lon nhat la: "<<Count;
+}
+int main()
+{
+    int m, n;
+    cout<<"Nhap so hang: ";
+    cin>>m;
+    cout<<"Nhap so cot: ";
+    cin>>n;
+    inputArray(m, n);
+    sumRowMax(m, n);
+    return 0;
+}

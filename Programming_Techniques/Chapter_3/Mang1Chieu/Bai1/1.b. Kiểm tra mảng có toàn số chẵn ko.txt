@@ -1,0 +1,32 @@
+using namespace std;
+
+void nhapMang(int a[], int n)
+{
+    for (int i=0;i<n;i++)
+    {
+        cout<<"Nhap phan tu thu "<<i+1<<":";
+        cin>>a[i];
+    }
+}
+int checkMang(int a[], int n)
+{
+    int Flag=1;
+    for (int i=0;i<n;i++)
+    {
+        if (a[i]%2!=0)
+        {
+            Flag=0;
+        }
+    }
+    cout<<Flag;
+    return 0;
+}
+int main()
+{
+    int n,a[1000];
+    cout<<"Nhap so phan tu mang: ";
+    cin>>n;
+    nhapMang(a,n);
+    checkMang(a,n);
+    return 0;
+}

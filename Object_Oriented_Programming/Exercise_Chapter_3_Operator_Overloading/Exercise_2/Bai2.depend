@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1662393164 source:d:\lap_trinh_huong_doi_tuong\bt_chuong3_operator_overloading\bai2\main.cpp
+	"complex.h"
+
+1662392928 d:\lap_trinh_huong_doi_tuong\bt_chuong3_operator_overloading\bai2\complex.h
+	<iostream>
+

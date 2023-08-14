@@ -1,0 +1,56 @@
+#include <iostream>
+
+using namespace std;
+
+int A[1000][1000];
+
+void inputArray(int m, int n)
+{
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cout<<"Nhap phan tu thu ["<<i<<"]["<<j<<"]: ";
+            cin>>A[i][j];
+        }
+    }
+    cout<<endl;
+}
+void arrange2DArray(int m, int n)
+{
+    int k = m*n;
+    for(int i=0; i<k-1; i++)
+    {
+		for(int j=i+1; j<k; j++)
+		{
+			if(A[i/n][i%n] < A[j/n][j%n])
+            		{
+				swap(A[i/n][i%n], A[j/n][j%n]);
+			}
+		}
+	}
+}
+void outputArray(int m, int n)
+{
+    cout<<"Mang da xap sep la: "<<endl;
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cout<<A[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+int main()
+{
+    int m, n;
+    cout<<"Nhap so hang: ";
+    cin>>m;
+    cout<<"Nhap so cot: ";
+    cin>>n;
+    inputArray(m, n);
+    arrange2DArray(m, n);
+    outputArray(m ,n);
+    return 0;
+}

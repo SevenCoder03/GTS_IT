@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1666198232 source:d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\src\baseplus.cpp
+	"BasePlus.h"
+
+1666198643 d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\include\baseplus.h
+	"Commission.h"
+
+1666198232 source:d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\src\commission.cpp
+	"Commission.h"
+
+1666198643 d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\include\commission.h
+	"Employee.h"
+
+1666198232 source:d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\src\hourly.cpp
+	"Hourly.h"
+
+1666198643 d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\include\hourly.h
+	"Employee.h"
+
+1666197550 source:d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\src\salaried.cpp
+	"Salaried.h"
+
+1666253910 d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\include\salaried.h
+	"Employee.h"
+
+1666197246 source:d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\src\employee.cpp
+	"Employee.h"
+
+1666253800 d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\include\employee.h
+	<iostream>
+
+1666232159 source:d:\object_oriented_programming\exercise_chapter_5_polymorphism\lap_5\main.cpp
+	<iostream>
+	"Employee.h"
+	"Salaried.h"
+	"Commission.h"
+	"Baseplus.h"
+	"Hourly.h"
+

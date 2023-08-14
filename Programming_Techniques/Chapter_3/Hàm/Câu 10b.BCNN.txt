@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int BCNN(int a, int b)
+{
+    int Max;
+    a>b ? Max=a : Max=b;
+    for (int i=Max;i<=a*b;i++)
+    {
+        if (i%a==0 & i%b==0)
+            return i;
+    }
+}
+int main()
+{
+    int a,b;
+    cout<<"Enter a: ";
+    cin>>a;
+    cout<<"Enter b: ";
+    cin>>b;
+    cout<<"Boi chung nho nhat cua "<<a<<" va "<<b<<" la: "<<BCNN(a,b);
+    return 0;
+}

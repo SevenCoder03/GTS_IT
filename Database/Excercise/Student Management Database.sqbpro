@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/Database/Excercise/Student Management Database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser query pragmas" current="2"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1123"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,5:mainClass"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Class" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="75"/><column index="2" value="140"/><column index="3" value="92"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Student" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="99"/><column index="2" value="175"/><column index="3" value="221"/><column index="4" value="75"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="StudentGrades" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="99"/><column index="2" value="96"/><column index="3" value="70"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Subject" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="1" mode="0"/></sort><column_widths><column index="1" value="96"/><column index="2" value="215"/><column index="3" value="55"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Tests" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="52"/><column index="2" value="52"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE Subject
+(
+	SubjectID char(3) PRIMARY KEY,
+	SubjectName TEXT,
+	Units INT
+)
+CREATE TABLE Class
+(
+	ClassID char(3) PRIMARY KEY,
+	ClassName TEXT,
+	ClassYear TEXT
+)
+CREATE TABLE Student
+(
+	StudentID char(3) PRIMARY KEY,
+	StudentName TEXT,
+	StudentAddress TEXT,
+	ClassID char(3)
+)
+
+CREATE TABLE StudentGrades
+(
+	StudentID char(3),
+	SubjectID char(3),
+	Grades REAL,
+	PRIMARY KEY (StudentID, SubjectID)
+)
+
+INSERT INTO Subject
+VALUES
+	('S01', 'KTMT', 3),
+	('S02', 'CSDL', 3),
+	('S03', 'KTLT', 3),
+	('S04', 'ĐK', 1),
+	('S05', 'ĐS', 2);
+
+INSERT INTO Class
+VALUES
+	('C01', 'Computer Science', 2022),
+	('C02', 'Database', 2021),
+	('C03', 'C++', 2020);
+	
+INSERT INTO Student
+VALUES
+	('T01', 'Nguyễn Văn A', 'Bình Thạnh, TP.HCM', 'C01'),
+	('T02', 'Nguyễn Văn B', 'Gò Vấp, TP.HCM', 'C02'),
+	('T03', 'Nguyễn Văn C', 'Thủ Đức, TP.HCM', 'C02'),
+	('T04', 'Nguyễn Văn D', 'Bình Thạnh, TP.HCM', 'C01'),
+	('T05', 'Nguyễn Văn E', 'Gò Vấp, TP.HCM', 'C03'),
+	('T06', 'Nguyễn Văn F', 'Bình Thạnh, TP.HCM', 'C01'),
+	('T07', 'Nguyễn Văn J', 'Quận 7, TP.HCM', 'C03'),
+	('T08', 'Nguyễn Văn H', 'Quận 8, TP.HCM', 'C01'),
+	('T09', 'Nguyễn Văn Y', 'Bình Thạnh, TP.HCM', 'C02'),
+	('T10', 'Nguyễn Văn K', 'Thủ Đức, TP.HCM', 'C01'),
+	('T11', 'Nguyễn Văn L', 'Bình Thạnh, TP.HCM', 'C03'),
+	('T12', 'Nguyễn Văn M', 'Gò Vấp, TP.HCM', 'C02'),
+	('T13', 'Nguyễn Văn N', 'Quận 7, TP.HCM', 'C03'),
+	('T14', 'Nguyễn Văn U', 'Bình Thạnh, TP.HCM', 'C02'),
+	('T15', 'Nguyễn Văn O', 'Quận 8, TP.HCM', 'C01'),
+	('T16', 'Nguyễn Văn Z', 'Bình Thạnh, TP.HCM', 'C03'),
+	('T17', 'Nguyễn Văn W', 'Quận 5, TP.HCM', 'C01'),
+	('T18', 'Nguyễn Văn X', 'Quận 7, TP.HCM', 'C02'),
+	('T19', 'Nguyễn Văn Y', 'Thử Đức, TP.HCM', 'C02'),
+	('T20', 'Nguyễn Văn T', 'Bình Thạnh, TP.HCM', 'C01');
+	
+INSERT INTO StudentGrades
+VALUES
+	('T01', 'S01', 10),
+	('T01', 'S02', 8.7),
+	('T02', 'S05', 9.5),
+	('T02', 'S04', 7.5),
+	('T03', 'S03', 7.9),
+	('T03', 'S04', 9.3),
+	('T04', 'S02', 8.9),
+	('T04', 'S03', 7.7),
+	('T05', 'S04', 8.9),
+	('T06', 'S03', 9.8),
+	('T06', 'S04', 6.9),
+	('T07', 'S05', 9.6),
+	('T08', 'S05', 5.8),
+	('T08', 'S01', 9.7),
+	('T08', 'S03', 7.0),
+	('T09', 'S02', 9.7),
+	('T09', 'S05', 7.0),
+	('T09', 'S01', 8.3),
+	('T10', 'S04', 8.5),
+	('T10', 'S03', 7.2);</sql><sql name="SQL 5">Q1: Liệt kê các môn hơn 2 tín chỉ
+SELECT *
+FROM Subject
+WHERE Units &gt; 2
+
+Q2: Liệt kê học sinh lớp &quot;Computer Science&quot;
+SELECT StudentID, StudentName
+FROM Class A, Student B
+WHERE ClassName = &quot;Computer Science&quot; AND A.ClassID = B.ClassID
+
+Q3: Môn có sỉ số lớn nhất (SQL lồng nhau)
+SELECT *
+FROM Subject
+WHERE Units = (SELECT max(Units) FROM Subject)
+
+Q4: Nhóm DATA : Cho biết sỉ số từng lớp ( từng gì Group by cái đó)
+SELECT ClassID, Count(*) as &quot;Sĩ số&quot;
+FROM Student 
+Group by ClassID
+
+Q5: Tính điểm trung bình cộng của từng sinh viên
+SELECT StudentID, Avg(Grades) as &quot;Điểm TB&quot;
+FROM StudentGrades
+GROUP BY StudentID
+
+Q6: Tìm Sinh viên có GPA lớn nhất
+SELECT StudentID, avg(Grades) as &quot;GPA&quot;
+FROM StudentGrades
+GROUP BY StudentID
+HAVING avg(Grades) = (SELECT Max(ĐTB)
+					  FROM (SELECT avg(Grades) AS &quot;ĐTB&quot;
+					  FROM StudentGrades
+					  GROUP BY StudentID))
+					  
+5.15: Find students (ID and Name) have the largest GPA (StudentID nằm trong cả A và B nên cần phải chỉ rõ)
+SELECT A.StudentID, StudentName, avg(Grades) as &quot;GPA&quot;
+FROM Student A, StudentGrades B
+WHERE A.StudentID = B.StudentID
+GROUP BY A.StudentID, StudentName
+HAVING avg(Grades) = (SELECT Max(ĐTB)
+					  FROM (SELECT avg(Grades) AS &quot;ĐTB&quot;
+					        FROM Student A, StudentGrades B
+							WHERE A.StudentID = B.StudentID
+							GROUP BY A.StudentID, StudentName))
+							
+5.16 Find classes (ID and Name) have the largest GPA
+SELECT A.ClassID, ClassName, avg(Grades) as &quot;GPA&quot;
+FROM Class A, Student B, StudentGrades C
+WHERE A.ClassID = B.ClassID AND B.StudentID = C.StudentID
+GROUP BY A.ClassID, ClassName
+HAVING avg(Grades) = (SELECT Max(GPA)
+					  FROM (SELECT avg(Grades) AS &quot;GPA&quot;
+							FROM Class A, Student B, StudentGrades C
+							WHERE A.ClassID = B.ClassID AND B.StudentID = C.StudentID
+							GROUP BY A.ClassID, ClassName))
+							
+5.17. GPA with weight for each student.
+SELECT StudentID, Sum(Grades*Units)/Sum(Units) AS &quot;GPAW&quot;
+FROM Subject A, StudentGrades B
+WHERE A.SubjectID = B.SubjectID
+GROUP BY StudentID
+
+5.18 GPA with weight for each student (ID and name).
+SELECT B.StudentID, StudentName, Sum(Grades*Units)/Sum(Units) AS &quot;GPAW&quot;
+FROM Subject A, StudentGrades B, Student C
+WHERE A.SubjectID = B.SubjectID AND B.StudentID = C.StudentID
+GROUP BY B.StudentID, StudentName
+
+5.19. GPA with weight for each class
+SELECT D.ClassID, Sum(Grades*Units)/Sum(Units) AS &quot;GPAW&quot;
+FROM Subject A, StudentGrades B, Student C, Class D
+WHERE A.SubjectID = B.SubjectID AND B.StudentID = C.StudentID AND C.ClassID = D.ClassID
+GROUP BY D.ClassID
+
+</sql><sql name="SQL4">CREATE TRIGGER validGrades
+	BEFORE INSERT ON StudentGrades
+BEGIN
+	SELECT CASE
+	WHEN NEW.Grades &lt; 0.0 OR New.Grades &gt; 10.0 THEN
+		RAISE(ABORT, 'Valid Grades')
+	END;
+END;
+DROP TRIGGER validGrades;
+
+
+CREATE TRIGGER validUnits
+	BEFORE INSERT ON Subject
+BEGIN
+	SELECT CASE
+	WHEN NEW.Units &lt; 0 THEN
+		RAISE(ABORT, 'Valid Units')
+	END;
+END;
+DROP TRIGGER validUnits;</sql><current_tab id="1"/></tab_sql></sqlb_project>

@@ -1,0 +1,383 @@
+//Bài 1
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+double Bai1a(double x, int n)
+{
+    double Sum = 0;
+    for(int i = 0; i <= n; i++)
+    {
+        Sum += pow(x, 2*i + 1);
+    }
+    return Sum;
+}
+
+double Bai1b(double x, int n)
+{
+    if(n == 0)
+        return x;
+    return pow(x, 2*n + 1) + Bai1b(x, n-1);
+}
+
+int main()
+{
+    double x;
+    int n;
+    cout<<"Nhap x: ";
+    cin>>x;
+    cout<<"Nhap n: ";
+    cin>>n;
+    cout<<"1a: "<<Bai1a(x, n)<<endl;
+    cout<<"1b: "<<Bai1b(x, n)<<endl;
+    return 0;
+}
+
+//Bài 2
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+void allocation_Arr(int *&a, int n)
+{
+    a = new int[n];
+}
+
+void evict_Arr(int *a)
+{
+    delete []a;
+}
+
+void input_Arr(int *a, int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        cout << "Nhap phan tu a["<<i<<"]: ";
+        cin >> *(a+i);
+    }
+}
+
+void output_Arr(int *a, int n)
+{
+    cout << "\nMang vua nhap vao: ";
+    for(int i = 0; i < n; i++)
+    {
+        cout << *(a+i) << " ";
+    }
+    cout<<endl;
+}
+
+void min_Positive_EvenNumber(int *a, int n)
+{
+    int Min;
+    bool Flag = false;
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] % 2 == 0 && a[i] >= 0)
+        {
+            Min = a[i];
+            Flag = true;
+            break;
+        }
+    }
+    if(Flag == false)
+    {
+        cout << "Mang khong co phan tu chan duong !!!" << endl;
+    }
+    else
+    {
+        for(int i = 0; i < n; i++)
+        {
+            if(a[i] % 2 == 0 && a[i] >= 0 && a[i] < Min)
+            {
+                Min = a[i];
+            }
+        }
+        cout << "So chan duong nho nhat la: " << Min << endl;
+    }
+}
+
+bool check_SquareNumber(int x)
+{
+    int sqr = sqrt(x);
+    if(sqr*sqr == x)
+        return true;
+    return false;
+}
+
+void sort_SquareNumber(int *a, int n)
+{
+    for(int i = 0; i < n - 1; i++)
+    {
+        if(check_SquareNumber(*(a+i)) == true)
+        {
+            for(int j = i + 1; j < n; j++)
+            {
+                if(*(a+i) < *(a+j) && check_SquareNumber(*(a+j)) == true)
+                {
+                    swap(*(a+i), *(a+j));
+                }
+            }
+        }
+    }
+    cout << "Mang sau khi sap xep: ";
+    output_Arr(a, n);
+}
+
+int main()
+{
+    int *a = nullptr;
+    int n;
+    cout << "Nhap so phan tu: ";
+    cin >> n;
+    allocation_Arr(a, n);
+    input_Arr(a, n);
+    output_Arr(a, n);
+    min_Positive_EvenNumber(a, n);
+    sort_SquareNumber(a, n);
+    evict_Arr(a);
+    return 0;
+}
+
+//Bài 3
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+char *themch(char *s, char *subs, int pos)
+{
+    char c[100];
+    strcpy(c, s + pos);
+    strcpy(s + pos, subs);
+    strcat(s , c);
+}
+
+int main()
+{
+    char s[100], subs[100];
+    int pos;
+    cout << "Nhap chuoi: ";
+    cin.getline(s, 100);
+    cout << "Nhap chuoi con: ";
+    cin.getline(subs, 100);
+    cout << "Nhap vi tri can them: ";
+    cin >> pos;
+    themch(s, subs, pos);
+    cout << s;
+    return 0;
+}
+
+//Bài 4
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string.h>
+using namespace std;
+
+struct Date
+{
+    int Day;
+    int Month;
+    int Year;
+};
+
+struct Employee
+{
+    char Code[10];
+    char Name[50];
+    Date Birthday;
+    double Wage;
+    int Workday;
+    double RealWage;
+};
+
+int check_EmployeeCode(Employee ListEmployee[], char CodeNew[], int EmployeeNumber)
+{
+    for(int i = 0; i < EmployeeNumber; i++)
+    {
+        if(strcmp(ListEmployee[i].Code, CodeNew) == 0)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void input_Employee(Employee &myEmployee)
+{
+    cin.ignore();
+    cout << "Code: ";
+    cin.getline(myEmployee.Code, 10);
+    cout << "Name: ";
+    cin.getline(myEmployee.Name, 50);
+    cout << "Day of birth: ";
+    cin >> myEmployee.Birthday.Day;
+    cout << "Month of birth: ";
+    cin >> myEmployee.Birthday.Month;
+    cout << "Year of birth: ";
+    cin >> myEmployee.Birthday.Year;
+    cout << "Basic wage: ";
+    cin >> myEmployee.Wage;
+    cout << "Work day: ";
+    cin >> myEmployee.Workday;
+    myEmployee.RealWage = myEmployee.Wage * myEmployee.Workday;
+}
+
+void output_Employee(Employee myEmployee)
+{
+    cout << "\t   " << setw(17) << myEmployee.Code << setw(26) << left << myEmployee.Name << setw(2)
+    << left << myEmployee.Birthday.Day << "/" << setw(2) << left << myEmployee.Birthday.Month << "/" << setw(15) << myEmployee.Birthday.Year
+    << setw(15) << myEmployee.Wage << setw(10) << myEmployee.Workday << "\t" << setw(10) << myEmployee.RealWage << endl;
+}
+
+void write_File(fstream &file, int EmployeeNumber)
+{
+    file.open("NHANVIEN", ios::out | ios::binary);
+    if(!file)
+    {
+        cout << "Error file";
+    }
+    else
+    {
+        for(int i = 0; i < EmployeeNumber; i++)
+        {
+            Employee myEmployee;
+            cout << "Enter employee " << i + 1<< "\n";
+            input_Employee(myEmployee);
+            file.write(reinterpret_cast<char*>(&myEmployee), sizeof(myEmployee));
+        }
+        file.close();
+    }
+}
+
+void read_File(fstream &file, Employee ListEmployee[], int EmployeeNumber)
+{
+    file.open("NHANVIEN", ios::in | ios::binary);
+    if(!file)
+    {
+        cout << "Erorr file";
+    }
+    else
+    {
+        int n = 0;
+        while(file.read(reinterpret_cast<char*>(& ListEmployee[n]), sizeof(ListEmployee[n])))
+        {
+            n++;
+        }
+        file.close();
+    }
+}
+
+void output_ListEmployee(Employee ListEmployee[], int EmployeeNumber)
+{
+    cout<< "\n\t\t\t\tLIST EMPLOYEE\n\n" << "\t" << setw(20) << left << "Code Employee" << setw(25) << left << "Name Employee" << setw(20)
+    << left << "Date Of Birth" << setw(15) << left << "Wage basic" << setw(13) << left << "Day Work" << setw(10)<< left << "Real Wage" << "\n";
+    for(int i=0; i < EmployeeNumber; i++)
+    {
+        output_Employee(ListEmployee[i]);
+    }
+}
+
+void sort_ListEmployee(Employee ListEmployee[], int EmployeeNumber)
+{
+    for(int i = 0; i < EmployeeNumber - 1; i++)
+    {
+        for(int j = i + 1; j < EmployeeNumber; j++)
+        {
+            if(ListEmployee[i].RealWage > ListEmployee[j].RealWage)
+            {
+                swap(ListEmployee[i], ListEmployee[j]);
+            }
+        }
+    }
+}
+
+void fix_Employee(Employee ListEmployee[], char CodeNew[], int EmployeeNumber)
+{
+    int index = check_EmployeeCode(ListEmployee, CodeNew, EmployeeNumber);
+    if(index == -1)
+    {
+        cout << "Not found employee !!!";
+    }
+    else
+    {
+        int select;
+    do{
+        system("cls");
+        cout << "\n0. Exit\n";
+        cout << "1. Fix Employee Code\n";
+        cout << "2. Fix Employee Name\n";
+        cout << "3. Fix Date Of Birth\n";
+        cout << "4. Fix Wage basic\n";
+        cout << "5. Fix Work Day\n";
+        cout << "Enter Select: ";
+        cin >> select;
+        switch (select){
+        case 0: break;
+        case 1:{
+                cin.ignore();
+                cout<<"\nEmployee Code Old: "<<ListEmployee[index].Code;
+                cout<<"\nEnter Employee Code New: ";
+                cin.getline(ListEmployee[index].Code, 10);
+                do {
+                    if (check_EmployeeCode(ListEmployee, ListEmployee[index].Code, EmployeeNumber) == -1) {
+                        cout << "\n\tEmployee Code Coincident !!!\n";
+                        cout << "   Re-Enter Employee Code New: ";
+                        cin.getline(ListEmployee[index].Code, 10);
+                    }
+                }while (check_EmployeeCode(ListEmployee, ListEmployee[index].Code, EmployeeNumber) == -1);
+                break;}
+        case 2:{
+                cin.ignore();
+                cout << "\nEmployee Name Old: "<<ListEmployee[index].Name;
+                cout << "\nEnter Employee Name New: ";
+                cin.getline(ListEmployee[index].Name, 50);
+                break;}
+        case 3:{
+                cout << "\nEnter Date Of Birth New: ";
+                cout << "\nDay of birth: ";
+                cin >> ListEmployee[index].Birthday.Day;
+                cout << "\nMonth of birth: ";
+                cin >> ListEmployee[index].Birthday.Month;
+                cout << "\nYear of birth: ";
+                cin >> ListEmployee[index].Birthday.Year;
+                break;}
+        case 4:{
+                cout << "Enter new wage basic: ";
+                cin >> ListEmployee[index].Wage;
+                ListEmployee[index].RealWage = ListEmployee[index].Wage * ListEmployee[index].Workday;
+                break;}
+        case 5:{
+                cout << "Enter new work day: ";
+                cin >> ListEmployee[index].Workday;
+                ListEmployee[index].RealWage = ListEmployee[index].Wage * ListEmployee[index].Workday;
+                break;}
+        default:
+            break;}
+            system("pause");
+        }while(select != 0);
+    }
+}
+
+int main()
+{
+    fstream file;
+    Employee ListEmployee[10];
+    int EmployeeNumber;
+    cout << "Enter number of employees: ";
+    cin >> EmployeeNumber;
+    write_File(file, EmployeeNumber);
+    read_File(file, ListEmployee, EmployeeNumber);
+    output_ListEmployee(ListEmployee, EmployeeNumber);
+    sort_ListEmployee(ListEmployee, EmployeeNumber);
+    cout << "\n\nAfter sorting: ";
+    output_ListEmployee(ListEmployee, EmployeeNumber);
+    cout << "\n\nEnter code employee want to fix: ";
+    char CodeNew[10];
+    cin.ignore();
+    cin.getline(CodeNew, 10);
+    fix_Employee(ListEmployee, CodeNew, EmployeeNumber);
+    cout << "\n\nAfter fixing: ";
+    output_ListEmployee(ListEmployee, EmployeeNumber);
+    return 0;
+}

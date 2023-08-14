@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1680071455 source:d:\the_design_and_analysis_of_algorithms\exam\first\main.cpp
+	<iostream>
+	<string>
+	<vector>
+	<algorithm>
+

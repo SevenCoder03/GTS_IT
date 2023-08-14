@@ -1,0 +1,417 @@
+//Bài 1
+#include<iostream>
+using namespace std;
+
+long long cau1a(int n)
+{
+	if (n == 0 || n == 1)
+		return 1;
+	return cau1a(n - 1) + 2*cau1a(n - 2);
+}
+
+long long cau1bi(int n)
+{
+	long long a[1000];
+	a[0] = 1;
+	a[1] = 1;
+	for (long long i = 2; i <= n; i++)
+    {
+        a[i] = a[i - 1] + 2*a[i - 2];
+    }
+    return a[n];
+}
+
+long long cau1bii(int n)
+{
+	long long F0 = 1, F1 = 1;
+	for (int i = 2; i <= n; i++)
+    {
+        long long tmp = F1;
+        F1+=2*F0;
+        F0 = tmp;
+    }
+	return F1;
+}
+// c) Trong 3 cach tren, cach thu 3 ham cau1bii toi uu hon vi:
+// Toi uu ve thoi gian va khong gian bo nho
+int main()
+{
+	int n;
+	cin>>n;
+	cout << cau1a(n) << endl;
+	cout << cau1bi(n) << endl;
+	cout << cau1bii(n) << endl;
+	return 0;
+}
+
+
+//Bài 2
+#include <iostream>
+#include <string>
+using namespace std;
+
+int count_Number_S(string s)
+{
+    int Count = 0;
+    for(int i=0; i<s.length(); i++)
+    {
+        if(s[i] >= '0' && s[i] <= '9')
+        {
+            Count++;
+        }
+    }
+    return Count;
+}
+
+void delete_S(string &s)
+{
+    for(int i=0; i<s.length(); i++)
+    {
+        if(s[i] >= '0' && s[i] <= '9')
+        {
+            s.erase(i, 1);
+            i--;
+        }
+    }
+}
+
+int main()
+{
+    string s;
+    getline(cin, s);
+    cout<<"So ky tu so: "<<count_Number_S(s)<<endl;
+    delete_S(s);
+    cout<<"Chuoi sau khi xoa: "<<s<<endl;
+    return 0;
+}
+
+//Bài 3
+#include<iostream>
+using namespace std;
+
+void Allocation(int *&a, int n)
+{
+    a = new int [n];
+}
+
+void Evict(int *a)
+{
+    delete []a;
+}
+
+void input_Arr(int *a, int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        cout << "Nhap a[" << i << "]: ";
+        cin >> *(a + i);
+    }
+}
+
+void output_Arr(int *a, int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        cout << *(a + i) << " ";
+    }
+    cout<<endl;
+}
+
+bool check_Prime(int x)
+{
+    if(x < 2)
+        return false;
+    for(int i=2; i*i <= x; i++)
+    {
+        if(x % i == 0)
+            return false;
+    }
+    return true;
+}
+
+int count_Prime(int *a, int n)
+{
+    int Count = 0;
+    for(int i=0; i<n; i++)
+    {
+        if(check_Prime(*(a+i)) == true)
+        {
+            Count++;
+        }
+    }
+    return Count;
+}
+
+void sort_Prime(int *a, int n)
+{
+    for(int i=0; i<n-1; i++)
+    {
+        if(check_Prime(*(a+i)) == true)
+        {
+            for(int j=i+1; j<n; j++)
+            {
+                if(check_Prime(*(a+j)) == true && *(a+i) > *(a+j))
+                {
+                    int tmp = *(a+j);
+                    *(a+i) = *(a+j);
+                    *(a+j) = tmp;
+                }
+            }
+        }
+    }
+}
+
+void resize_Arr(int *&a, int oldsize, int newsize)
+{
+      int *b = new int[oldsize];
+      for (int i = 0; i < oldsize; ++i)
+      {
+            b[i] = a[i];
+      }
+      delete[] a;
+      a = new int[newsize];
+      int Min = oldsize < newsize ? oldsize : newsize;
+      for (int i = 0; i < Min; ++i)
+      {
+            a[i] = b[i];
+      }
+      delete[] b;
+}
+
+void delete_Arr(int *&a, int &n, int pos)
+{
+    for(int i = pos; i < n - 1; i++)
+    {
+        a[i] = a[i + 1];
+    }
+    resize_Arr(a, n, n--);
+}
+
+void delete_Prime(int *&a, int &n)
+{
+    for(int i=0; i<n; i++)
+    {
+        if(check_Prime(*(a+i)) == true)
+        {
+            delete_Arr(a, n, i);
+            i--;
+        }
+    }
+}
+
+int main()
+{
+    int *a = nullptr;
+    int n;
+    int select;
+    do{
+        system("cls");
+        cout << "\n0. Thoat\n";
+        cout << "1. Nhap Mang\n";
+        cout << "2. Xuat Mang\n";
+        cout << "3. Dem so luong so nguyen to\n";
+        cout << "4. Sap Xep So Nguyen To\n";
+        cout << "5. Xoa tat ca so nguyen to\n";
+        cout << "Nhap Lua Chon Cua Ban: ";
+        cin >> select;
+        switch (select)
+        {
+        case 0: break;
+        case 1:
+            {
+                do{
+                    cout << "Nhap so luong phan tu: ";
+                    cin >> n;
+                    if(n < 0)
+                        cout << "So luong la phai >= 0!\n";
+                }while(n < 0);
+                Allocation(a, n);
+                input_Arr(a, n);
+                break;
+            }
+        case 2:
+            {
+                output_Arr(a, n);
+                break;
+            }
+        case 3:
+            {
+                cout << "So luong so nguyen to: "<<count_Prime(a, n)<<endl;
+                break;
+            }
+        case 4:
+            {
+                sort_Prime(a, n);
+                cout<<"Mang sau khi duoc sap xep: ";
+                output_Arr(a, n);
+                break;
+            }
+        case 5:
+            {
+                delete_Prime(a, n);
+                cout<<"Mang sau khi xoa so nguyen to: ";
+                output_Arr(a, n);
+                break;
+            }
+        default:
+            break;
+        }
+        system("pause");
+    }while(select != 0);
+    if(a != NULL)
+    {
+        Evict(a);
+    }
+    return 0;
+}
+
+
+//Bài 4
+#include <iostream>
+
+using namespace std;
+
+void Allocation_Arr2D(int **&a, int row, int column)
+{
+    a = new int *[row];
+    for(int i=0; i < row; i++)
+    {
+        a[i] = new int [column];
+    }
+}
+
+void Evict_Arr2D(int **a, int row)
+{
+    for(int i=0; i<row; i++)
+    {
+        delete []a[i];
+    }
+    delete []a;
+}
+
+void input_Arr2D(int **a, int r, int c)
+{
+    for(int i=0; i<r; i++)
+    {
+        for(int j=0; j<c; j++)
+        {
+            cout<<"Nhap phan tu a["<<i<<"]["<<j<<"]: ";
+            cin>>*(*(a+i)+j);
+        }
+    }
+}
+
+void output_Arr2D(int **a, int r, int c)
+{
+    for(int i=0; i<r; i++)
+    {
+        for(int j=0; j<c; j++)
+        {
+            cout<<*(*(a+i)+j)<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+void sort_Arr2D(int **a, int r, int c)
+{
+    int k = c*r;
+    for(int i=0; i<k-1; i++)
+    {
+        for(int j=i+1; j<k; j++)
+        {
+            if(*(*(a+(i/c))+(i%c)) > *(*(a+(j/c))+(j%c)))
+            {
+                int tmp = *(*(a+(i/c))+(i%c));
+                *(*(a+(i/c))+(i%c)) = *(*(a+(j/c))+(j%c));
+                *(*(a+(j/c))+(j%c)) = tmp;
+            }
+        }
+    }
+}
+
+int count_Discrimination(int **a, int r, int c)
+{
+    int Count = 1;
+    int k = r*c;
+    for(int i=1; i<k; i++)
+    {
+        bool Flag = true;
+        for(int j = i-1; j >= 0; j--)
+        {
+            if(*(*(a+(i/c))+(i%c)) == *(*(a+(j/c))+(j%c)))
+            {
+                Flag = false;
+                break;
+            }
+        }
+        if(Flag == true)
+        {
+            Count++;
+        }
+    }
+    return Count;
+}
+
+int main()
+{
+    int **a = nullptr;
+    int column, row;
+    int select;
+    do{
+        system("cls");
+        cout << "\n0. Thoat\n";
+        cout << "1. Nhap Mang\n";
+        cout << "2. Xuat Mang\n";
+        cout << "3. Sap xep\n";
+        cout << "4. Dem phan tu phan biet\n";
+        cout << "Nhap Lua Chon Cua Ban: ";
+        cin >> select;
+        switch (select)
+        {
+        case 0: break;
+        case 1:
+            {
+                do{
+                    cout << "Nhap so luong dong: ";
+                    cin >> row;
+                    if(row < 0)
+                        cout << "So luong dong la phai >= 0!\n";
+                }while(row < 0);
+                do{
+                    cout << "Nhap so luong cot: ";
+                    cin >> column;
+                    if(column < 0)
+                        cout << "So luong cot la phai >= 0!\n";
+                }while(column < 0);
+                Allocation_Arr2D(a, row, column);
+                input_Arr2D(a, row, column);
+                break;
+            }
+        case 2: output_Arr2D(a, row, column);
+                break;
+        case 3:
+            {
+                sort_Arr2D(a, row, column);
+                cout<<"Mang sau khi duoc sap xep: "<<endl;
+                output_Arr2D(a, row, column);
+                break;
+            }
+        case 4:
+            {
+                cout<<"So luong phan tu phan biet: "<<count_Discrimination(a, row, column)<<endl;
+                break;
+            }
+        default:
+            break;
+        }
+        system("pause");
+    }while(select != 0);
+    if(a != NULL)
+    {
+        Evict_Arr2D(a, row);
+    }
+    return 0;
+}
+
+

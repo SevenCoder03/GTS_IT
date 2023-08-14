@@ -1,0 +1,22 @@
+4
+21H1120012
+ho Chi Nhan
+30/08/2003
+Nam
+10 9 10
+21H1120014
+Nguyen Duc Thiep
+21/12/2003
+Nam
+9 10 10
+21H1120053
+Do Kim Lam
+21/11/2003
+Nam
+9 9 10
+21H1120044
+Nguyen Phuong Nam
+13/02/2003
+Nam
+10 8 10
+

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/CoSoDuLieu/Order Management Database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1912"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,8:mainCategory"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Category" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="2" mode="1"/></sort><column_widths><column index="1" value="108"/><column index="2" value="136"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Customer" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="1" mode="0"/></sort><column_widths><column index="1" value="113"/><column index="2" value="141"/><column index="3" value="161"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Delivery" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="101"/><column index="2" value="120"/><column index="3" value="79"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="DeliveryDetail" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="101"/><column index="2" value="98"/><column index="3" value="154"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Order1" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="1" mode="0"/></sort><column_widths><column index="1" value="79"/><column index="2" value="98"/><column index="3" value="116"/><column index="4" value="113"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="OrderDetail" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="79"/><column index="2" value="98"/><column index="3" value="132"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Product" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="98"/><column index="2" value="126"/><column index="3" value="88"/><column index="4" value="108"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE Category
+(
+	CategoryID TEXT PRIMARY KEY,
+	CategoryName TEXT
+)
+
+CREATE TABLE Product
+(
+	ProductID TEXT PRIMARY KEY,
+	ProductName TEXT,
+	UnitPrice INT,
+	CategoryID TEXT,
+	FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+)
+
+CREATE TABLE Customer
+(
+	CustomerID TEXT PRIMARY KEY,
+	CustomerName TEXT,
+	CustomerAddress TEXT
+)
+
+CREATE TABLE Order1 
+(
+	OrderID TEXT PRIMARY KEY,
+	OrderDate TEXT,
+	RequireDate TEXT,
+	CustomerID TEXT,
+	FOREIGN KEY (CustomerID) REFERENCES Customer(CustomerID)
+)
+
+CREATE TABLE OrderDetail
+(
+	OrderID TEXT,
+	ProductID TEXT,
+	OrderQuantity INT,
+	PRIMARY KEY (OrderID, ProductID)
+	FOREIGN KEY (OrderID) REFERENCES Order1(OrderID),
+	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+)
+
+CREATE TABLE Delivery
+(
+	DeliveryID TEXT PRIMARY KEY,
+	DeliveryDate TEXT,
+	OrderID TEXT
+)
+
+CREATE TABLE DeliveryDetail
+(
+	DeliveryID TEXT,
+	ProductID TEXT,
+	DeliveryQuantity INT,
+	PRIMARY KEY (DeliveryID, ProductID),
+	FOREIGN KEY (DeliveryID) REFERENCES Delivery(DeliveryID),
+	FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+)</sql><sql name="SQL 2">INSERT INTO Category
+VALUES
+	('C01','Nongsan'),
+	('C02','Nhienlieu'),
+	('C03','Haisan');
+	
+INSERT INTO Product
+VALUES
+('P01','Rice',10,'C01'),
+('P02','Batata',5,'C01'),
+('P03','Tomato',2,'C01'),
+('P04','Banana',15,'C01'),
+('P05','Apple',20,'C01'),
+('P06','Apricot',13,'C01'),
+('P07','Avocado',11,'C01'),
+('P08','Crab',30,'C02'),
+('P09','lobster',50,'C02'),
+('P10','fish',20,'C02'),
+('P11','squid',15,'C02'),
+('P12','kingcrab',100,'C02'),
+('P13','oyster',40,'C02'),
+('P14','octopus',30,'C02'),
+('P15','eel',10,'C02'),
+('P16','shrimp',24,'C02'),
+('P17','Xang',30,'C03'),
+('P18','Dau',15,'C03'),
+('P19','Nhot',20,'C03'),
+('P20','Gas',30,'C03');
+
+INSERT INTO Customer
+VALUES
+('H01','Brian','Q1'),
+('H02','Alex','Q1'),
+('H03','Lisa','Q1'),
+('H04','Dieu','Q2'),
+('H05','Hung','Q3'),
+('H06','Thiep','Q4'),
+('H07','Mush','Q1'),
+('H08','Gates','Q1'),
+('H09','Henry','Q1'),
+('H10','John','Q1');
+
+INSERT INTO Order1
+VALUES
+('O01','2022-05-20','2022-06-01','H04'),
+('O02','2022-05-03','2022-06-28','H05'),
+('O03','2022-02-15','2022-02-16','H06'),
+('O04','2022-03-20','2022-03-23','H06'),
+('O05','2022-01-31','2022-10-21','H07');
+
+INSERT INTO OrderDetail
+VALUES
+('O01','P12',4),
+('O01','P09',4),
+('O01','P11',30),
+('O01','P13',50),
+('O02','P17',10000),
+('O02','P18',2000),
+('O02','P19',3000),
+('O03','P01',10),
+('O03','P02',30),
+('O03','P03',30),
+('O03','P04',20),
+('O03','P05',15),
+('O03','P06',25),
+('O04','P08',100),
+('O05','P20',100000);
+
+INSERT INTO Delivery
+VALUES
+('D01','2022-06-02','O01'),
+('D02','2022-06-22','O02'),
+('D03','2022-06-28','O02'),
+('D04','2022-06-29','O02'),
+('D05','2022-06-30','O02'),
+('D06','2022-02-16','O03'),
+('D07','2022-02-16','O03'),
+('D08','2022-03-23','O04'),
+('D09','2022-10-15','O05'),
+('D10','2022-10-20','O05');
+
+INSERT INTO DeliveryDetail
+VALUES
+('D01','P12',3),
+('D01','P09',2),
+('D01','P11',1),
+('D01','P13',1),
+('D02','P17',1),
+('D03','P18',1),
+('D04','P19',1),
+('D05','P17',1),
+('D02','P18',1),
+('D03','P19',2),
+('D06','P01',1),
+('D06','P02',1),
+('D06','P03',1),
+('D06','P04',1),
+('D07','P05',1),
+('D07','P06',1),
+('D08','P08',5),
+('D09','P20',1),
+('D10','P20',2);
+</sql><sql name="SQL 4">CREATE TRIGGER checkDate
+	BEFORE INSERT ON Order1
+BEGIN
+	SELECT CASE
+	WHEN NEW.OderDate &gt; NEW.RequireDate THEN
+		RAISE(ABORT, 'Valid Date')
+	END;
+END;
+DROP TRIGGER checkDate;
+
+</sql><sql name="SQL 5">5.1. All the products of category ID = &quot;C02&quot;.
+SELECT * 
+FROM Product
+WHERE CategoryID = &quot;C02&quot;
+
+5.2. List of customers who took order with date from d1 to d2.
+SELECT CustomerID
+FROM Order1
+WHERE OrderDate &gt;= &quot;2022-02-03&quot; AND OrderDate &lt;= &quot;2022-05-20&quot;
+
+5.3. List of customers (ID, name, address) who took order in year = 2021.
+SELECT A.CustomerID, CustomerName, CustomerAddress
+FROM Order1 A, Customer B
+WHERE A.CustomerID = B.CustomerID AND strftime('%Y', OrderDate) = &quot;2022&quot;
+
+5.4. List of products (ID) ordered in order ID = &quot;O01&quot;.
+SELECT ProductID
+FROM OrderDetail
+WHERE OrderID = &quot;O01&quot;
+
+5.5. List of products (*) ordered in order ID = &quot;O01&quot;.
+SELECT A.ProductID, ProductName, UnitPrice, CategoryID
+FROM OrderDetail A, Product B
+WHERE A.ProductID = B.ProductID AND OrderID = &quot;O01&quot;	
+
+5.6. List of products (*) ordered in order date = d.
+SELECT A.ProductID, ProductName, UnitPrice, CategoryID
+FROM OrderDetail A, Product B, Order1 C
+WHERE A.ProductID = B.ProductID AND A.OrderID = C.OrderID AND OrderDate = &quot;2022-05-03&quot;	
+
+5.7. Calculating total of quantities for each order (ID).
+SELECT OrderID, Sum(OrderQuantity) as &quot;Total Quantity&quot;
+FROM OrderDetail
+GROUP BY OrderID
+
+5.8. Calculating total of quantities for each order (ID), it took in year = 2021.
+SELECT A.OrderID, Sum(OrderQuantity) as &quot;Total Quantity&quot;
+FROM OrderDetail A, Order1 B
+WHERE A.OrderID = B.OrderID AND strftime('%Y', OrderDate) = &quot;2022&quot;
+GROUP BY A.OrderID
+
+5.9. With orders (ID) have the largest total cost.
+SELECT OrderID, Sum(OrderQuantity) as &quot;Total Quantity&quot;
+FROM OrderDetail
+GROUP BY OrderID
+HAVING Sum(OrderQuantity) = (SELECT MAX(S)
+							 FROM (SELECT Sum(OrderQuantity) as &quot;S&quot;
+							 FROM OrderDetail
+							 GROUP BY OrderID))
+							 
+5.10. In year = 2021, with orders (ID) have the most total cost.
+SELECT A.OrderID, Sum(OrderQuantity) as &quot;Total Quantity 2022&quot;
+FROM Order1 A, OrderDetail B
+WHERE A.OrderID = B.OrderID AND strftime('%Y', OrderDate) = &quot;2022&quot;
+GROUP BY A.OrderID
+HAVING Sum(OrderQuantity) = (SELECT Max(S)
+							 FROM (SELECT A.OrderID, Sum(OrderQuantity) as &quot;S&quot;
+							 FROM Order1 A, OrderDetail B
+							 WHERE A.OrderID = B.OrderID AND strftime('%Y', OrderDate) = &quot;2022&quot;
+							 GROUP BY A.OrderID ))
+
+5.11. Calculating total cost of orders for each customer.
+SELECT CustomerID, Sum(OrderQuantity) as &quot;Total Quantity Customer&quot;
+FROM OrderDetail A, Order1 B
+WHERE A.OrderID = B.OrderID 
+GROUP BY CustomerID
+
+5.12. With customers (ID) have the largest total cost.
+SELECT B.CustomerID, Sum(OrderQuantity) as &quot;Total Quantity Customer&quot;
+FROM OrderDetail A, Customer B, Order1 C
+WHERE A.OrderID = C.OrderID AND B.CustomerID = C.CustomerID
+GROUP BY B.CustomerID
+HAVING Sum(OrderQuantity) = (SELECT Max(S)
+							FROM (SELECT B.CustomerID, Sum(OrderQuantity) as &quot;S&quot;
+							FROM OrderDetail A, Customer B, Order1 C
+							WHERE A.OrderID = C.OrderID AND B.CustomerID = C.CustomerID
+							GROUP BY B.CustomerID))
+							
+5.13. Calculating total cost of orders for each customer (ID, name).
+SELECT B.CustomerID, CustomerName, Sum(OrderQuantity) as &quot;Total Quantity Customer&quot;
+FROM OrderDetail A, Customer B, Order1 C
+WHERE A.OrderID = C.OrderID AND B.CustomerID = C.CustomerID
+GROUP BY B.CustomerID
+
+5.14. In year = 2021, Calculating total cost of orders for each customer (ID, name).
+SELECT B.CustomerID, CustomerName, Sum(OrderQuantity) as &quot;Total Quantity Customer&quot;
+FROM OrderDetail A, Customer B, Order1 C
+WHERE A.OrderID = C.OrderID AND B.CustomerID = C.CustomerID AND strftime('%Y', OrderDate) = &quot;2022&quot;
+GROUP BY B.CustomerID, CustomerName
+
+5.15. In year = 2021, customers (ID, name, address) with the largest total cost.
+SELECT B.CustomerID, CustomerName, Sum(OrderQuantity) as &quot;Total Quantity Customer&quot;
+FROM OrderDetail A, Customer B, Order1 C
+WHERE A.OrderID = C.OrderID AND B.CustomerID = C.CustomerID AND strftime('%Y', OrderDate) = &quot;2022&quot;
+GROUP BY B.CustomerID, CustomerName, CustomerAddress
+HAVING Sum(OrderQuantity) = (SELECT Max(S)
+							 FROM(SELECT B.CustomerID, CustomerName, Sum(OrderQuantity) as &quot;S&quot;
+							 FROM OrderDetail A, Customer B, Order1 C
+							 WHERE A.OrderID = C.OrderID AND B.CustomerID = C.CustomerID AND strftime('%Y', OrderDate) = &quot;2022&quot;
+							 GROUP BY B.CustomerID, CustomerName, CustomerAddress))
+</sql><current_tab id="3"/></tab_sql></sqlb_project>

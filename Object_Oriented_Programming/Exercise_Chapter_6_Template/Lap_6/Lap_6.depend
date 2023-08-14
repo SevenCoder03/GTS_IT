@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1668928644 source:d:\object_oriented_programming\exercise_chapter_6_template\lap_6\main.cpp
+	"Stack.h"
+	"Stack.cpp"
+	<conio.h>
+
+1668928644 d:\object_oriented_programming\exercise_chapter_6_template\lap_6\stack.h
+	<iostream>
+
+1670460435 d:\object_oriented_programming\exercise_chapter_6_template\lap_6\stack.cpp
+	"Stack.h"
+
+1670460435 source:d:\object_oriented_programming\exercise_chapter_6_template\lap_6\stack.cpp
+	"Stack.h"
+

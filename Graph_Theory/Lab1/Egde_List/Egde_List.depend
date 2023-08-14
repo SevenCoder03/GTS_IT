@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1678293005 source:d:\graph_theory\lab1\egde_list\main.cpp
+	<iostream>
+	<fstream>
+

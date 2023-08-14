@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1663995385 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai2\src\date.cpp
+	"date.h"
+
+1663951278 d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai2\include\date.h
+	<iostream>
+
+1663950555 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai2\main.cpp
+	<iostream>
+	"Employee.h"
+
+1663950690 d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai2\include\employee.h
+	"date.h"
+
+1663951473 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai2\src\employee.cpp
+	"employee.h"
+

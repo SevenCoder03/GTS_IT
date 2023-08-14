@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1665021716 source:d:\lap_trinh_huong_doi_tuong\bt_chuong3_operator_overloading\lap3\bai1\main.cpp
+	"Rational.h"
+	<iostream>
+
+1665022229 source:d:\lap_trinh_huong_doi_tuong\bt_chuong3_operator_overloading\lap3\bai1\src\rational.cpp
+	"Rational.h"
+
+1665022397 d:\lap_trinh_huong_doi_tuong\bt_chuong3_operator_overloading\lap3\bai1\include\rational.h
+	<iostream>
+

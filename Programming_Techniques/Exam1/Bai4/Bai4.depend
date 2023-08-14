@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1656258875 source:d:\kythuatlaptrinh\exam1\bai4\main.cpp
+	<iostream>
+	<fstream>
+	<iomanip>
+	<string.h>
+

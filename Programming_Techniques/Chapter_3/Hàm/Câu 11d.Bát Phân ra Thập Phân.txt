@@ -1,0 +1,23 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int O2D(int n)
+{
+    int Result,m;
+    for(int i=0;n>0;i++)
+    {
+        m=n%10; 
+        Result+=m*pow(8,i);
+        n/=10;
+    }
+    return Result;
+}
+int main()
+{
+    int n;
+    cout<<"Enter n: ";
+    cin>>n;
+    cout<<"So bat phan "<<n<<" chuyen sang thap phan la: "<<O2D(n);
+    return 0;
+}

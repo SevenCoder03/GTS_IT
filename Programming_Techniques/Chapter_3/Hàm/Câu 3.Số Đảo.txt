@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+int sodao(int n)
+{
+    int m,N=0;
+    while(n>0)
+    {
+        m=n%10;
+        N=N*10+m;
+        n/=10;
+    }
+    return N;
+}
+int main()
+{
+    int n;
+    cout<<"Enter : ";
+    cin>>n;
+    cout<<"Result: "<<sodao(n);
+    return 0;
+}

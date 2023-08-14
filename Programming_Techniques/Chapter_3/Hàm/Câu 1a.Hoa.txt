@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+char hoa(char s)
+{
+        if(s>='a' & s<='z')
+        {
+            s-=32;
+        }
+    cout<<"Result: "<<s<<endl;
+    return 0;
+}
+int main()
+{
+    cout<<"Enter: ";
+    char s;
+    cin>>s;
+    hoa(s);
+    return 0;
+}

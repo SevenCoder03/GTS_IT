@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1666184334 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\ex_theory\src\student.cpp
+	"Student.h"
+
+1666164472 d:\object_oriented_programming\exercise_chapter_4_inheritance\ex_theory\include\student.h
+	"Person.h"
+
+1666184334 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\ex_theory\src\teacher.cpp
+	"Teacher.h"
+
+1666165076 d:\object_oriented_programming\exercise_chapter_4_inheritance\ex_theory\include\teacher.h
+	"Person.h"
+
+1666184285 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\ex_theory\main.cpp
+	<iostream>
+	"Person.h"
+	"Student.h"
+	"Teacher.h"
+
+1665644494 d:\object_oriented_programming\exercise_chapter_4_inheritance\ex_theory\include\person.h
+	<iostream>
+
+1666164493 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\ex_theory\src\person.cpp
+	"Person.h"
+

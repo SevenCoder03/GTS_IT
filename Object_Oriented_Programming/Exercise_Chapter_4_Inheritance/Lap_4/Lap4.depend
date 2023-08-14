@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1665549563 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\lap_4\main.cpp
+	<iostream>
+	"Vehicle.h"
+	"Car.h"
+	"Truck.h"
+
+1665549563 d:\object_oriented_programming\exercise_chapter_4_inheritance\lap_4\include\vehicle.h
+	<iostream>
+	<string.h>
+
+1665549563 d:\object_oriented_programming\exercise_chapter_4_inheritance\lap_4\include\car.h
+	"Vehicle.h"
+
+1665549563 d:\object_oriented_programming\exercise_chapter_4_inheritance\lap_4\include\truck.h
+	"Vehicle.h"
+
+1665623527 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\lap_4\src\car.cpp
+	"Car.h"
+
+1665549563 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\lap_4\src\truck.cpp
+	"Truck.h"
+
+1665549563 source:d:\object_oriented_programming\exercise_chapter_4_inheritance\lap_4\src\vehicle.cpp
+	"Vehicle.h"
+

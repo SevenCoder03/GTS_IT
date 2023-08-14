@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+int UCLN(int a, int b)
+{
+    int Min;
+    a>b ? Min=b : Min=a;
+    for (int i=Min;i>0;i--)
+    {
+        if (a%i==0 & b%i==0)
+            return i;
+    }
+}
+int main()
+{
+    int a,b;
+    cout<<"Enter a: ";
+    cin>>a;
+    cout<<"Enter b: ";
+    cin>>b;
+    cout<<"Uoc chung lon nhat cua "<<a<<" va "<<b<<" la: "<<UCLN(a,b);
+    return 0;
+}

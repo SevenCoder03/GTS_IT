@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+char thuong(char s)
+{
+        if(s>='A' & s<='Z')
+        {
+            s+=32;
+        }
+    cout<<"Result: "<<s<<endl;
+    return 0;
+}
+int main()
+{
+    cout<<"Enter: ";
+    char s;
+    cin>>s;
+    thuong(s);
+    return 0;
+}

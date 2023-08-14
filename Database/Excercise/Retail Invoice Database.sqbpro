@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/CoSoDuLieu/Retail Invoice Database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="918"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,7:mainInvoice"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Category" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="1" mode="0"/></sort><column_widths><column index="1" value="108"/><column index="2" value="136"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Invoice" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort><column index="1" mode="0"/></sort><column_widths><column index="1" value="95"/><column index="2" value="114"/><column index="3" value="215"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="InvoiceDetail" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="95"/><column index="2" value="98"/><column index="3" value="84"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Product" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="98"/><column index="2" value="126"/><column index="3" value="88"/><column index="4" value="108"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE Category
+(
+	CategoryID char(3) PRIMARY KEY,
+	CategoryName TEXT
+)
+CREATE TABLE Product
+(
+	ProductID char(3) PRIMARY KEY, 
+	ProductName TEXT, 
+	UnitPrice INT, 
+	CategoryID char(3)
+)
+CREATE TABLE Invoice 
+(
+	InvoiceID char(3)PRIMARY KEY,
+	InvoiceDate TEXT,
+	Decription TEXT
+)
+CREATE TABLE InvoiceDetail
+(
+	InvoiceID char(3),
+	ProductID char(3),
+	Quantity INT,
+	PRIMARY KEY(InvoiceID, ProductID)
+)
+	CREATE TABLE Invoice 
+(
+	InvoiceID char(3)PRIMARY KEY,
+	InvoiceDate TEXT,
+	Decription TEXT
+)
+CREATE TABLE InvoiceDetail
+(
+	InvoiceID char(3),
+	ProductID char(3),
+	Quantity INT,
+	PRIMARY KEY(InvoiceID, ProductID)
+)
+INSERT INTO Category
+VALUES
+	('C01', 'Nước uống có Ga'),
+	('C02', 'Đồ gia dụng'),
+	('C03', 'Quần áo'),
+	('C04', 'Giày'),
+	('C05', 'Thực phẩm');
+	
+INSERT INTO Product
+VALUES
+	('P01', 'CocaCola', 14, 'C01'),
+	('P02', '7Up', 15, 'C01'),
+	('P03', 'Pepsi', 15, 'C01'),
+	('P04', 'C2', 13, 'C01'),
+	('P05', 'Sting', 16, 'C01'),
+	('P06', 'WakeUp247', 18, 'C01'),
+	('P07', 'Dao', 100, 'C02'),
+	('P08', 'Chén', 100, 'C02'),
+	('P09', 'Đũa', 5, 'C02'),
+	('P10', 'Muỗng', 5, 'C02'),
+	('P11', 'Nồi', 200, 'C02'),
+	('P12', 'Chảo',300, 'C02'),
+	('P13', 'Kéo', 50, 'C02'),
+	('P14', 'Panta', 10, 'C01'),
+	('P15', 'Áo Sơmi', 200, 'C03'),
+	('P16', 'Áo Thun', 100, 'C03'),
+	('P17', 'Quần Jean', 300, 'C03'),
+	('P18', 'Quần Tây', 400, 'C03'),
+	('P19', 'Giày Da', 100, 'C04'),
+	('P20', 'Giày Thể Thao', 100, 'C04'),
+	('P21', 'Giày Cao Gót', 200, 'C04'),
+	('P22', 'Giày Quai Hậu', 50, 'C04'),
+	('P23', 'Trứng', 10, 'C05'),
+	('P24', 'Cá', 30, 'C05'),
+	('P25', 'Thịt Heo', 40, 'C05'),
+	('P26', 'Thịt Bò', 45, 'C05'),
+	('P27', 'Rau Cải', 3, 'C05'),
+	('P28', 'Rau Muống', 5, 'C05'),
+	('P29', 'Xà Lách', 8, 'C05'),
+	('P30', 'Bắp Cải', 5, 'C05');
+	
+INSERT INTO Invoice
+VALUES
+	('I01', '2022-05-23', 'Hàng Bình Thường'),
+	('I02', '2021-04-25', 'Hàng Dễ Vỡ'),
+	('I03', '2020-11-17', 'Hàng Dễ Cháy'),
+	('I04', '2022-12-08', 'Hàng Dễ Vỡ'),
+	('I05', '2021-04-19', 'Hàng Dễ Cháy'),
+	('I06', '2021-02-18', 'Hàng Bình Thường'),
+	('I07', '2020-09-05', 'Hàng Bình Thường'),
+	('I08', '2020-04-07', 'Hàng Dễ Cháy'),
+	('I09', '2020-01-08', 'Hàng Đông Lạnh'),
+	('I10', '2022-01-01', 'Hàng Dễ Vỡ');
+INSERT INTO InvoiceDetail
+VALUES
+	('I01', 'P01', 8),
+	('I02', 'P02', 15),
+	('I02', 'P01', 23),
+	('I03', 'P04', 15),
+	('I03', 'P05', 4),
+	('I01', 'P05', 9),
+	('I02', 'P03', 14),
+	('I04', 'P04', 12),
+	('I04', 'P03', 4),
+	('I05', 'P01', 19),
+	('I06', 'P02', 29),
+	('I06', 'P08', 8),
+	('I07', 'P28', 12),
+	('I07', 'P20', 23),
+	('I07', 'P17', 34),
+	('I08', 'P09', 36),
+	('I08', 'P25', 9),
+	('I08', 'P28', 4),
+	('I09', 'P19', 8),
+	('I10', 'P16', 35),
+	('I10', 'P05', 46);
+	
+SELECT *
+FROM Product
+WHERE CategoryID = &quot;C01&quot;
+
+SELECT * from Product</sql><sql name="SQL 3">5.1. Find products of the category ID = &quot;CO1&quot;
+SELECT *
+FROM Product
+WHERE CategoryID = &quot;C01&quot;
+
+5.2. Find products (ID, name and price) of the category ID = &quot;CO2&quot;
+SELECT ProductID, ProductName, UnitPrice
+FROM Product
+WHERE CategoryID = &quot;C02&quot;
+
+5.3. Find products (*) with unit price from 10 to 50
+SELECT *
+FROM Product
+WHERE UnitPrice BETWEEN 10 AND 50
+
+5.4. Show invoices, it created at date = d
+SELECT *
+FROM Invoice 
+WHERE strftime('%d',InvoiceDate) = '23'
+
+5.5. Show invoices, it created on year = 2021
+SELECT *
+FROM Invoice
+WHERE strftime('%Y',InvoiceDate) = '2022'
+
+5.6. Find products (ID, name, unit price and quantity), it belong to the invoice at date = d.
+SELECT A.ProductID, ProductName, UnitPrice, Quantity
+FROM Product A, InvoiceDetail B, Invoice C
+WHERE A.ProductID = B.ProductID AND B.InvoiceID = C.InvoiceID AND strftime('%d',InvoiceDate) = '13'
+
+5.7. Total quantity of each invoice
+SELECT InvoiceID, SUM(Quantity) AS &quot;Total Quantity&quot;
+FROM InvoiceDetail 
+Group by InvoiceID
+
+5.8. Total quantity of each invoice in date = d.
+SELECT A.InvoiceID, SUM(Quantity) AS &quot;Total Quantity&quot;
+FROM Invoice A, InvoiceDetail B
+WHERE A.InvoiceID = B.InvoiceID AND strftime('%d',InvoiceDate) = '08'
+GROUP BY A.InvoiceID
+
+5.9. Total cost (= quantity times to unit price) of each invoice
+SELECT B.InvoiceID, SUM(Quantity * UnitPrice) AS &quot;Cost&quot;
+FROM  InvoiceDetail B, Product C
+WHERE  B.ProductID = C.ProductID
+GROUP BY B.InvoiceID
+
+5.10. With invoices have the largest total quantity
+SELECT InvoiceID, SUM(Quantity) AS &quot;MAX&quot;
+FROM InvoiceDetail 
+Group by InvoiceID
+Having SUM(Quantity) = (SELECT Max(T)
+						FROM (SELECT SUM(Quantity) as &quot;T&quot;
+						FROM InvoiceDetail
+						GROUP BY InvoiceID))
+
+5.11. In date = d, with invoices have the largest total quantity
+SELECT A.InvoiceID, SUM(Quantity) AS &quot;MAX&quot;
+FROM InvoiceDetail A, Invoice B
+WHERE A.InvoiceID = B.InvoiceID AND strftime('%d',InvoiceDate) = '23'
+Group by A.InvoiceID
+Having SUM(Quantity) = (SELECT Max(T)
+						FROM (SELECT SUM(Quantity) as &quot;T&quot;
+						FROM InvoiceDetail A, Invoice B
+						WHERE A.InvoiceID = B.InvoiceID AND strftime('%d',InvoiceDate) = '23'
+						Group by A.InvoiceID))
+	
+5.12. With invoices have the largest total cost.
+SELECT B.InvoiceID, SUM(Quantity * UnitPrice) AS &quot;Cost&quot;
+FROM  InvoiceDetail B, Product C
+WHERE  B.ProductID = C.ProductID
+GROUP BY B.InvoiceID
+HAVING SUM(Quantity * UnitPrice) = (SELECT Max(TC)
+									FROM (SELECT B.InvoiceID, SUM(Quantity * UnitPrice) AS &quot;TC&quot;
+									FROM  InvoiceDetail B, Product C
+									WHERE  B.ProductID = C.ProductID
+									GROUP BY B.InvoiceID))
+
+5.13. In date = d, with invoices have the largest total cost.
+SELECT A.InvoiceID, SUM(Quantity * UnitPrice) AS &quot;MCost&quot;
+FROM  Invoice A, InvoiceDetail B, Product C
+WHERE  B.ProductID = C.ProductID AND A.InvoiceID = B.InvoiceID AND strftime('%d',InvoiceDate) = '23'
+GROUP BY A.InvoiceID
+HAVING SUM(Quantity * UnitPrice) = (SELECT Max(TC)
+									FROM (SELECT A.InvoiceID, SUM(Quantity * UnitPrice) AS &quot;TC&quot;
+									FROM  Invoice A, InvoiceDetail B, Product C
+									WHERE  B.ProductID = C.ProductID AND A.InvoiceID = B.InvoiceID AND strftime('%d',InvoiceDate) = '23'
+									GROUP BY A.InvoiceID))
+									
+5.14. Find years have the largest total cost
+SELECT strftime('%Y',InvoiceDate) as &quot;Year&quot;, SUM(Quantity * UnitPrice) AS &quot;TotalCost&quot;
+FROM  Invoice A, InvoiceDetail B, Product C
+WHERE  B.ProductID = C.ProductID AND A.InvoiceID = B.InvoiceID
+GROUP BY strftime('%Y',InvoiceDate)
+HAVING SUM(Quantity * UnitPrice) = (SELECT Max(TotalCost)
+									FROM (SELECT strftime('%Y',InvoiceDate) , SUM(Quantity * UnitPrice) AS &quot;TotalCost&quot;
+									FROM  Invoice A, InvoiceDetail B, Product C
+									WHERE  B.ProductID = C.ProductID AND A.InvoiceID = B.InvoiceID
+									GROUP BY strftime('%Y',InvoiceDate)))</sql><current_tab id="1"/></tab_sql></sqlb_project>

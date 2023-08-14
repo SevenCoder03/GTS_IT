@@ -1,0 +1,72 @@
+#include <iostream>
+
+using namespace std;
+
+void nhap_Mang(int arr[], int &n)
+{
+    do
+    {
+        cout<<"\nNhap so phan tu: ";
+        cin>>n;
+        if(n <= 0 || n > 1000)
+        {
+            cout<<"So phan tu khong hop le. Xin kiem tra lai !\n";
+        }
+    }while(n <= 0 || n > 1000);
+    for (int i=0; i<n; i++)
+    {
+        cout<<"Nhap phan tu "<<"a["<<i<<"]: ";
+        cin>>arr[i];
+    }
+}
+bool check_SNT(int t)
+{
+    if(t < 2)
+        return false;
+    for(int i=2; i*i <= t; i++){
+        if(t % i == 0)
+            return false;
+    }
+    return true;
+}
+void delete_x(int i, int &n, int a[])
+{
+    for(int j=i; j<n; j++)
+    {
+        a[j] = a[j+1];
+    }
+    n--;
+}
+void fix_Arr(int a[], int &n)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            if(a[i] == a[j])
+            {
+                delete_x(j, n, a);
+                j--;
+            }
+        }
+    }
+}
+void xuat_Mang(int arr[], int n)
+{
+    for(int i = 0; i < n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+int main()
+{
+    int n, x;
+    int *a = new int[1000];
+    nhap_Mang(a, n);
+    fix_Arr(a, n);
+    cout<<"\nMang ket qua: ";
+    xuat_Mang(a, n);
+    delete []a;
+    return 0;
+}
+

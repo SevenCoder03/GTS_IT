@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="D:/CoSoDuLieu/Warehouse Management Database.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="125"/><column_width id="3" width="1052"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,7:mainInstock"/><default_encoding codec=""/><browse_table_settings><table schema="main" name="Category" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="108"/><column index="2" value="136"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Instock" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="127"/><column index="2" value="98"/><column index="3" value="84"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table><table schema="main" name="Warehouse" show_row_id="0" encoding="" plot_x_axis="" unlock_view_pk="_rowid_"><sort/><column_widths><column index="1" value="127"/><column index="2" value="175"/><column index="3" value="108"/></column_widths><filter_values/><conditional_formats/><row_id_formats/><display_formats/><hidden_columns/><plot_y_axes/><global_filter/></table></browse_table_settings></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE Category
+(
+	CategoryID TEXT PRIMARY KEY,
+	CategoryName TEXT 
+)
+CREATE TABLE Product
+(
+	ProductID TEXT PRIMARY KEY,
+	ProductName TEXT,
+	UnitPrice INT,
+	CategoryID TEXT
+)
+CREATE TABLE Warehouse
+(
+	WarehouseID TEXT,
+	WarehouseAddress TEXT,
+	CategoryID TEXT,
+	PRIMARY KEY (WarehouseID, CategoryID)
+)
+CREATE TABLE Instock
+(
+	WarehouseID TEXT,
+	ProductID TEXT,
+	Quantity INT,
+	PRIMARY KEY (WarehouseID, ProductID)
+)
+INSERT INTO Category
+VALUES
+	('C01', 'Household'),
+	('C02', 'Stationery'),
+	('C03', 'Food');
+INSERT INTO Product
+VALUES
+	('P01', 'Bowl', 1, 'C01'),
+	('P02', 'Paper', 2, 'C02'),
+	('P03', 'Beverage', 3, 'C03'),
+	('P04', 'Spoon', 55, 'C01'),
+	('P05', 'Vegetables', 12, 'C03'),
+	('P06', 'Pen', 11, 'C02'),
+	('P07', 'Pencil', 8, 'C02'),
+	('P08', 'Sofa', 14, 'C01'),
+	('P09', 'Fish', 15, 'C03'),
+	('P10', 'Chopsticks', 55, 'C01'),
+	('P11', 'Noodle', 120, 'C03'),
+	('P12', 'Ruler', 7, 'C02'),
+	('P13', 'Chicken', 12, 'C03'),
+	('P14', 'Eraser', 110, 'C02'),
+	('P15', 'Pan', 100, 'C01'),
+	('P16', 'Sticker', 1, 'C02'),
+	('P17', 'Rice', 7, 'C03'),
+	('P18', 'Pot', 85, 'C01'),
+	('P19', 'Calculator', 13, 'C02'),
+	('P20', 'Garbage', 12, 'C01');
+INSERT INTO Warehouse
+VALUES
+	('W01', 'TP HCM', 'C01'),
+	('W02', 'Long An', 'C02'),
+	('W03', 'Ben Tre', 'C03'),
+	('W04', 'Nghe Tinh', 'C01'),
+	('W05', 'Dong Thap', 'C02');
+INSERT INTO Instock
+VALUES 
+	('W01', 'P01', 500),
+	('W01', 'P10', 1000),
+	('W01', 'P20', 25),
+	('W02', 'P02', 10),
+	('W02', 'P06', 100),
+	('W02', 'P07', 3600),
+	('W03', 'P19', 10),
+	('W03', 'P03', 60),
+	('W04', 'P05', 5),
+	('W04', 'P09', 100),
+	('W05', 'P11', 100),
+	('W05', 'P03', 4);
+	
+Cre: Đỗ Kim Lâm
+</sql><sql name="SQL 2">5.1. All the products of category ID = &quot;C02&quot;
+SELECT *
+FROM Product
+WHERE CategoryID = &quot;C02&quot;
+
+5.2. All the warehouses (*) that store category ID = &quot;C01&quot;.
+SELECT *
+FROM Warehouse 
+WHERE CategoryID = &quot;C01&quot;
+
+5.3. All the warehouses (*) in now store product name = &quot;beverage&quot;
+SELECT *
+FROM Warehouse A, Product B
+WHERE A.CategoryID = B.CategoryID AND ProductName = &quot;Beverage&quot;
+
+5.4. All the products, it can be store in warehouse ID = &quot;W01&quot;.
+SELECT ProductID
+FROM Instock
+WHERE WarehouseID = &quot;W01&quot;
+
+5.5. Calculating sum of quantity for each warehouses.
+SELECT WarehouseID, Sum(Quantity)
+FROM Instock
+GROUP BY WarehouseID
+
+5.6. Find warehouse have the largest total quantities
+SELECT WarehouseID, Sum(Quantity) as &quot;Largest Total&quot;
+FROM Instock
+GROUP BY WarehouseID
+HAVING Sum(Quantity) = (SELECT Max(S)
+					   FROM (SELECT WarehouseID, Sum(Quantity) as &quot;S&quot;
+							 FROM Instock
+							 GROUP BY WarehouseID))
+							 
+5.7. Calculating count of product for each warehouse
+SELECT WarehouseID, Count(ProductID) as &quot;Count&quot;
+FROM Instock
+GROUP BY WarehouseID
+
+5.8. Find warehouses have the largest number of product
+SELECT WarehouseID, Count(ProductID) as &quot;Largest Count&quot;
+FROM Instock
+GROUP BY WarehouseID
+HAVING Count(ProductID) = (SELECT Max(&quot;C&quot;)
+						   FROM (SELECT WarehouseID, Count(ProductID) as &quot;C&quot;
+							     FROM Instock
+								 GROUP BY WarehouseID))
+
+5.9. Calculating sum of quantity for each product.
+SELECT ProductID, Sum(Quantity)
+FROM Instock
+GROUP BY ProductID
+						 
+5.10. Show products have the largest total of quantities
+SELECT ProductID, Sum(Quantity)
+FROM Instock
+GROUP BY ProductID
+HAVING Sum(Quantity) = (SELECT Max(S)
+						FROM ( SELECT ProductID, Sum(Quantity) as &quot;S&quot;
+						FROM Instock
+						GROUP BY ProductID))</sql><sql name="SQL 3"></sql><current_tab id="1"/></tab_sql></sqlb_project>

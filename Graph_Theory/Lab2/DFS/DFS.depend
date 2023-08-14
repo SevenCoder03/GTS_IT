@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1682334196 source:d:\graph_theory\lab2\dfs\main.cpp
+	<iostream>
+	<fstream>
+	<stack>
+

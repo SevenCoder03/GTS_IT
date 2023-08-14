@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1663066107 source:d:\cau_truc_du_lieu_va_giai_thuat\bai_tap_struct\bai3\main.cpp
+	<iostream>
+	<string.h>
+	<iomanip>
+

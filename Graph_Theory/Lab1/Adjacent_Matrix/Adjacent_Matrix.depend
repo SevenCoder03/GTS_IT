@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1678261695 source:d:\graph_theory\lab1\adjacent_matrix\main.cpp
+	<iostream>
+	<fstream>
+

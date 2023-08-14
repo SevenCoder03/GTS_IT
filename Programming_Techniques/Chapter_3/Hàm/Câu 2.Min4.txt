@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int Min4(int a,int b,int c,int d)
+{
+    int Min=a;
+    if(b<Min)
+    {
+        Min=b;
+    }
+    if(c<Min)
+    {
+        Min=c;
+    }
+    if(d<Min)
+    {
+        Min=d;
+    }
+    return Min;
+}
+int main()
+{
+   int a,b,c,d;
+   cout<<"Enter a: ";
+   cin>>a;
+   cout<<"Enter b: ";
+   cin>>b;
+   cout<<"Enter c: ";
+   cin>>c;
+   cout<<"Enter d: ";
+   cin>>d;
+   cout<<"Min number:  "<<Min4(a,b,c,d);;
+   return 0;
+}

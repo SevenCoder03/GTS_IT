@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1664414484 source:d:\lap_trinh_huong_doi_tuong\bt_chuong3_operator_overloading\bai1\main.cpp
+	<iostream>
+	"Fraction.h"
+
+1664414484 d:\lap_trinh_huong_doi_tuong\bt_chuong3_operator_overloading\bai1\fraction.h
+	<iostream>
+
+1672913171 source:d:\object_oriented_programming\exercise_chapter_3_operator_overloading\exercise_1\main.cpp
+	<iostream>
+	"Fraction.h"
+
+1672913171 d:\object_oriented_programming\exercise_chapter_3_operator_overloading\exercise_1\fraction.h
+	<iostream>
+

@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1679297570 source:d:\graph_theory\lab3\euler\main.cpp
+	<iostream>
+	<fstream>
+	<vector>
+	<stack>
+

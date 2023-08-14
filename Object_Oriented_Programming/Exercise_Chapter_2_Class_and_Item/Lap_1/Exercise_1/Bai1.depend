@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1663206760 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\bai1\main.cpp
+	<iostream>
+	<rect.h>
+
+1663206838 d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\bai1\include\rect.h
+	<math.h>
+	<iostream>
+
+1663211378 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\bai1\src\rect.cpp
+	"rect.h"
+
+1663206760 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap1\main.cpp
+	<iostream>
+	<rect.h>
+
+1663807973 d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap1\include\rect.h
+	<math.h>
+	<iostream>
+
+1663211378 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap1\src\rect.cpp
+	"rect.h"
+

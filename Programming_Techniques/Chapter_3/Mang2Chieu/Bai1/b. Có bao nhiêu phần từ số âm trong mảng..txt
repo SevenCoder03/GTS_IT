@@ -1,0 +1,43 @@
+#include <iostream>
+
+using namespace std;
+
+int A[1000][1000];
+
+void inputArray(int m, int n)
+{
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cout<<"Nhap phan tu thu ["<<i<<"]["<<j<<"]: ";
+            cin>>A[i][j];
+        }
+    }
+    cout<<endl;
+}
+void coutNegative(int m, int n)
+{
+    int Count=0;
+    for(int i=0; i<m; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            if(A[i][j] < 0)
+            {
+                Count++;
+            }
+        }
+    }
+    cout<<Count;
+}
+int main()
+{
+    int m, n;
+    cout<<"Nhap so hang: ";
+    cin>>m;
+    cout<<"Nhap so cot: ";
+    cin>>n;
+    inputArray(m, n);
+    coutNegative(m, n);
+}

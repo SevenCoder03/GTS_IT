@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1684910413 source:d:\the_design_and_analysis_of_algorithms\lab\parking_lot\main.cpp
+	<iostream>
+	<vector>
+

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1678799297 source:d:\graph_theory\lab2\bfs\main.cpp
+	<iostream>
+	<fstream>
+	<queue>
+

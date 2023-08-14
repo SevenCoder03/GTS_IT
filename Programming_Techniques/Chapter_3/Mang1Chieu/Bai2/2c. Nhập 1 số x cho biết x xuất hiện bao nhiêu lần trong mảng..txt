@@ -1,0 +1,35 @@
+#include <iostream>
+
+using namespace std;
+
+void nhapMang(int a[], int n)
+{
+    for (int i=0;i<n;i++)
+    {
+        cout<<"Nhap phan tu thu "<<i+1<<":";
+        cin>>a[i];
+    }
+}
+int checkMang(int a[], int n, int x)
+{
+    int Count=0;
+    for (int i=0;i<n;i++)
+    {
+        if(a[i]==x)
+        {
+                Count+=1;
+        }
+    }
+    cout<<"So lan xuat hien cua x: "<<Count;
+}
+int main()
+{
+    int n,a[1000],x;
+    cout<<"Nhap so phan tu mang: ";
+    cin>>n;
+    cout<<"Nhap x: ";
+    cin>>x;
+    nhapMang(a,n);
+    checkMang(a,n,x);
+    return 0;
+}

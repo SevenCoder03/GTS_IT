@@ -1,0 +1,154 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+struct Node{
+	 int coefficient;
+	 int exponent;
+	 Node *pNext;
+};
+
+struct Polynomial{
+	Node *pHead;
+ 	Node *pTail;
+};
+
+void createsList(Polynomial &L){
+	L.pHead = nullptr;
+	L.pTail = nullptr;
+}
+
+Node* createNode(int coefficient, int exponent){
+	Node *p = new Node;
+	p->coefficient = coefficient;
+	p->exponent = exponent;
+	p->pNext = nullptr;
+	return p;
+}
+
+void insertpTail(Polynomial &L, int coefficient, int exponent){
+	Node *p = createNode(coefficient, exponent);
+	if (L.pHead == nullptr){
+		L.pHead = L.pTail = p ;
+	}
+	else{
+		L.pTail->pNext = p;
+		L.pTail = p;
+	}
+}
+
+void processList(Polynomial L){
+	Node *p = new Node;
+	p = L.pHead;
+	if(p == nullptr) {
+        cout << "Empty" << endl;
+        return;
+	}
+	while (p != nullptr){
+		cout << p->coefficient << "x^" << p->exponent;
+        if(p != L.pTail) {
+            cout << " + ";
+        }
+        p = p->pNext;
+	}
+	cout << endl;
+}
+
+void removeFisrt(Polynomial &L){
+    Node *p = new Node;
+    p = L.pHead;
+    L.pHead = L.pHead->pNext;
+    delete p;
+}
+
+void removeLast(Polynomial &L)
+{
+    for(Node *p = L.pHead; p != nullptr; p = p ->pNext)
+    {
+        if(p->pNext == L.pTail)
+        {
+            delete L.pTail;
+            p->pNext = nullptr;
+            L.pTail = p;
+        }
+    }
+}
+
+void removeElement(Polynomial &L, int coefficient, int exponent){
+    if(L.pHead->coefficient == coefficient && L.pHead->exponent == exponent){
+        removeFisrt(L);
+        return;
+    }
+
+    if(L.pTail->coefficient == coefficient && L.pTail->exponent == exponent){
+        removeLast(L);
+        return;
+    }
+
+    Node *p = new Node;
+    for(Node *k = L.pHead; k != nullptr; k=k->pNext){
+        if(k->coefficient == coefficient && k->exponent == exponent){
+            p->pNext = k->pNext;
+            delete k;
+            return;
+        }
+        p = k;
+    }
+}
+
+void calPolynomial(Polynomial L, int x) {
+    int result = 0;
+    Node *p;
+	p = L.pHead;
+	if(L.pHead = nullptr) {
+        cout << "Empty" << endl;
+        return;
+	}
+	while (p != nullptr){
+		result += p->coefficient * pow(x, p->exponent);
+		p = p->pNext;
+	}
+	cout << "Result: P(" << x << ") = " << result;
+}
+
+void compactPolynomial(Polynomial &L) {
+    Node *p = new Node;
+	p = L.pHead;
+	if(L.pHead == nullptr) {
+        cout << "Empty" << endl;
+        return;
+	}
+	while (p != nullptr){
+        Node *h = new Node;
+        h = p;
+        for(Node *k = p->pNext; k != nullptr; k=k->pNext){
+            if(k->exponent == p->exponent){
+                p->coefficient += k->coefficient;
+                h->pNext = k->pNext;
+                delete k;
+                k = h;
+            }
+            else {
+                h = k;
+            }
+        }
+		p=p->pNext;
+	}
+}
+
+int main ()
+{
+    Polynomial L;
+    createsList(L);
+    insertpTail(L, 1, 1);
+    insertpTail(L, 2, 2);
+    insertpTail(L, 3, 3);
+    insertpTail(L, 3, 4);
+    insertpTail(L, 4, 4);
+    insertpTail(L, 4, 4);
+    insertpTail(L, 4, 5);
+    processList(L);
+    compactPolynomial(L);
+    processList(L);
+    return 0;
+}

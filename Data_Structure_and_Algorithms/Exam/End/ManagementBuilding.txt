@@ -1,0 +1,127 @@
+#include <iostream>
+#include <math.h>
+#include <string.h>
+using namespace std;
+
+struct Room{
+	 int number;
+	 char type[2];
+	 int status;
+	 char customerName[30];
+	 Room *pNext;
+};
+
+struct Building{
+	Room *pHead;
+ 	Room *pTail;
+};
+
+void createsList(Building &L){
+	L.pHead = nullptr;
+	L.pTail = nullptr;
+}
+
+Room* createRoom(int number, char type[]){
+	Room *p = new Room;
+	p->number = number;
+	strcpy(p->type, type);
+	p->status = 0;
+	strcpy(p->customerName, "");
+	p->pNext = nullptr;
+	return p;
+}
+
+void insertRoom(Building &L, int number, char type[]){
+	Room *p = createRoom(number, type);
+	if (L.pHead == nullptr){
+		L.pHead = L.pTail = p ;
+	}
+	else{
+		L.pTail->pNext = p;
+		L.pTail = p;
+	}
+}
+
+void setupBuilding(Building &L, int numberRR, int numberDB, int numberTC) {
+    for(int i = 1; i <= numberRR; i++) {
+        insertRoom(L, i, "RR");
+    }
+    for(int i = numberRR + 1; i <= numberRR + numberDB; i++) {
+        insertRoom(L, i, "DB");
+    }
+    for(int i = numberRR + numberDB + 1; i <= numberRR + numberDB + numberTC; i++) {
+        insertRoom(L, i, "TC");
+    }
+}
+
+void borrowRoom(Building &L) {
+    int number;
+    char name[30];
+    cout << "Enter room number: ";
+    cin >> number;
+    cout << "Enter name Customer: ";
+    cin.ignore();
+    cin.getline(name, 30);
+    Room *p = new Room;
+	p = L.pHead;
+    while (p != nullptr){
+		if(p->number == number) {
+            p->status = 1;
+            strcpy(p->customerName, name);
+            cout << "Borrow Successfull\n";
+            return;
+		}
+		p = p->pNext;
+	}
+}
+
+void returnRoom(Building &L){
+	int number;
+    cout << "Enter room number: "; cin >> number;
+    Room *p = new Room;
+	p = L.pHead;
+    while (p != nullptr){
+		if(p->number == number) {
+            p->status = 0;
+            return;
+		}
+	}
+}
+
+void processListToTC(Building L){
+	Room *p = new Room;
+	p = L.pHead;
+	cout << "Room TC Empty: ";
+	while (p != nullptr){
+		if(strcmp(p->type, "TC") == 0 && p->status == 0) {
+            cout << p->number << " ";
+		}
+		p = p->pNext;
+	}
+	cout << endl;
+}
+
+void processList(Building L){
+	Room *p = new Room;
+	p = L.pHead;
+	while (p != nullptr){
+        cout << p->number << " ";
+        cout << p->type << " ";
+        p = p->pNext;
+	}
+	cout << endl;
+}
+
+int main ()
+{
+    Building L;
+    createsList(L);
+    setupBuilding(L, 10, 30, 60);
+    borrowRoom(L);
+    borrowRoom(L);
+    borrowRoom(L);
+    borrowRoom(L);
+    processListToTC(L);
+    //processList(L);
+    return 0;
+}

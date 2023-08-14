@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1663813108 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai1\src\rect2.cpp
+	"rect2.h"
+
+1663811632 d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai1\include\rect2.h
+	<math.h>
+	<iostream>
+	<string.h>
+
+1663811734 source:d:\lap_trinh_huong_doi_tuong\bt_chuong2_class_and_item\lap2\bai1\main.cpp
+	<iostream>
+	"rect2.h"
+

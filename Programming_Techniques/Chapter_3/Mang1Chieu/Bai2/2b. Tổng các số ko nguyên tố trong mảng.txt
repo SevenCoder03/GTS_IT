@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void nhapMang(int a[], int n)
+{
+    for (int i=0;i<n;i++)
+    {
+        cout<<"Nhap phan tu thu "<<i+1<<": ";
+        cin>>a[i];
+    }
+}
+int checkMang(int a[], int n)
+{
+    int Total=0;
+    for (int i=0;i<n;i++)
+    {
+        if (a[i] < 2)
+      {
+        Total+=a[i];
+      }
+        else
+      {
+        for (int j=2; j*j < a[i] ;j++)
+            if (a[i] % j == 0)
+        {
+           Total+=a[i];
+        }
+      }
+    }
+    return Total;
+}
+int main()
+{
+    int n,a[1000],Result;
+    cout<<"Nhap so phan tu mang: ";
+    cin>>n;
+    nhapMang(a,n);
+    Result=checkMang(a,n);
+    cout<<Result;
+    return 0;
+}
